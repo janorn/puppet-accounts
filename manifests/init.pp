@@ -4,18 +4,23 @@
 #
 # === Parameters:
 #
-# $groups::       Array of groups that should be present.
+# [*groups*]
+#   Array of groups that should be present.
 #
-# $users::        Array of users that should be present.
+# [*users*]
+#   Array of users that should be present.
 #
-# $user_uids::    A hash table connecting usernames with their uids.
+# [*user_uids*]
+#   A hash table connecting usernames with their uids.
 #
-# $user_info::    A hash table with user information.
+# [*user_info*]
+#   A hash table with user information.
 #
-# === Todo:
-#
-# * TODO: Grab nested hiera (defined in multiple yaml definitions).
-#
+# [*purge*]
+#   If set to true (defaults to false), all users defined in the
+#   `user_uids` hash that are NOT present in `users` will be removed
+#   from the system. This removes the configured ssh keys from the
+#   users homefolder.
 #
 class accounts (
   $groups        = hiera_array('accounts::groups', []),
